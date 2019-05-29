@@ -29,7 +29,7 @@
   <description>Batik Java2D SVG generator</description>
 
   <parent>
-    <groupId>org.apache.xmlgraphics</groupId>
+    <groupId>org.jetbrains.intellij.deps.batik</groupId>
     <artifactId>batik</artifactId>
     <version>1.13.0-SNAPSHOT</version>
   </parent>
