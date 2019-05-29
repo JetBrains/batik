@@ -148,8 +148,7 @@
       </plugins>
     </pluginManagement>
   </build>
-
-  <profiles>
+<profiles>
     <profile>
       <id>custom-javac</id>
       <activation>
@@ -176,7 +175,6 @@
       </build>
     </profile>
   </profiles>
-
   <scm>
     <connection>scm:svn:https://svn.apache.org/repos/asf/xmlgraphics/batik/trunk/</connection>
     <url>scm:svn:https://svn.apache.org/repos/asf/xmlgraphics/batik/trunk/</url>
@@ -195,10 +193,10 @@
   </repositories>
 
   <distributionManagement>
-    <site>
-      <id>${project.artifactId}-site</id>
-      <url>${project.baseUri}</url>
-    </site>
+    <repository>
+      <id>bintray-jetbrains-intellij-third-party-dependencies</id>
+      <url>https://api.bintray.com/maven/jetbrains/intellij-third-party-dependencies/batik/;publish=1</url>
+    </repository>
   </distributionManagement>
 
 </project>
