@@ -85,11 +85,11 @@
       <artifactId>batik-util</artifactId>
       <version>${project.version}</version>
     </dependency>
-    <dependency>
-      <groupId>${project.groupId}</groupId>
-      <artifactId>batik-xml</artifactId>
-      <version>${project.version}</version>
-    </dependency>
+    <!--<dependency>-->
+    <!--  <groupId>${project.groupId}</groupId>-->
+    <!--  <artifactId>batik-xml</artifactId>-->
+    <!--  <version>${project.version}</version>-->
+    <!--</dependency>-->
     <dependency>
       <groupId>org.apache.xmlgraphics</groupId>
       <artifactId>xmlgraphics-commons</artifactId>
@@ -100,12 +100,12 @@
       <artifactId>xml-apis-ext</artifactId>
       <version>${xmlapisext.version}</version>
     </dependency>
-    <dependency>
-      <groupId>org.mozilla</groupId>
-      <artifactId>rhino</artifactId>
-      <version>${rhino.version}</version>
-      <optional>true</optional>
-    </dependency>
+    <!--<dependency>-->
+    <!--  <groupId>org.mozilla</groupId>-->
+    <!--  <artifactId>rhino</artifactId>-->
+    <!--  <version>${rhino.version}</version>-->
+    <!--  <optional>true</optional>-->
+    <!--</dependency>-->
   </dependencies>
 
   <build>
