@@ -23,9 +23,6 @@ import org.apache.batik.dom.AbstractElement;
 import org.apache.batik.dom.events.AbstractEvent;
 import org.apache.batik.dom.events.NodeEventTarget;
 import org.apache.batik.dom.util.XLinkSupport;
-import org.apache.batik.script.Interpreter;
-import org.apache.batik.script.InterpreterException;
-import org.apache.batik.script.ScriptEventWrapper;
 import org.apache.batik.util.ParsedURL;
 import org.apache.batik.util.SVGConstants;
 import org.apache.batik.w3c.dom.Location;
@@ -234,10 +231,10 @@ public class BaseScriptingEnvironment {
     /**
      * The default Interpreter for the document
      */
-    protected Interpreter interpreter;
+    protected Object interpreter;
 
     /**
-     * Map of {@link Interpreter} to {@link org.apache.batik.bridge.Window}
+     * Map of {@link Object} to {@link org.apache.batik.bridge.Window}
      * objects.
      */
     protected Map windowObjects = new HashMap();
@@ -259,9 +256,9 @@ public class BaseScriptingEnvironment {
     }
 
     /**
-     * Returns the Window object for the specified {@link Interpreter}.
+     * Returns the Window object for the specified {@link Object}.
      */
-    public org.apache.batik.bridge.Window getWindow(Interpreter interp,
+    public org.apache.batik.bridge.Window getWindow(Object interp,
                                                     String lang) {
         org.apache.batik.bridge.Window w =
             (org.apache.batik.bridge.Window) windowObjects.get(interp);
@@ -275,7 +272,7 @@ public class BaseScriptingEnvironment {
 
     /**
      * Returns the Window object for scripting languages that have no
-     * {@link Interpreter} object.
+     * {@link Object} object.
      */
     public org.apache.batik.bridge.Window getWindow() {
         return getWindow(null, null);
@@ -284,7 +281,7 @@ public class BaseScriptingEnvironment {
     /**
      * Creates a new Window object.
      */
-    protected org.apache.batik.bridge.Window createWindow(Interpreter interp,
+    protected org.apache.batik.bridge.Window createWindow(Object interp,
                                                           String lang) {
 
         return new Window(interp, lang);
@@ -293,7 +290,7 @@ public class BaseScriptingEnvironment {
     /**
      * Returns the default Interpreter for this document.
      */
-    public Interpreter getInterpreter() {
+    public Object getInterpreter() {
         if (interpreter != null)
             return interpreter;
 
@@ -302,7 +299,7 @@ public class BaseScriptingEnvironment {
         return getInterpreter(lang);
     }
 
-    public Interpreter getInterpreter(String lang) {
+    public Object getInterpreter(String lang) {
         //interpreter = bridgeContext.getInterpreter(lang);
         if (interpreter == null) {
             if (languages.contains(lang)) {
@@ -325,8 +322,8 @@ public class BaseScriptingEnvironment {
     /**
      * Initializes the environment of the given interpreter.
      */
-    public void initializeEnvironment(Interpreter interp, String lang) {
-        interp.bindObject("window", getWindow(interp, lang));
+    public void initializeEnvironment(Object interp, String lang) {
+        //interp.bindObject("window", getWindow(interp, lang));
     }
 
     /**
@@ -435,7 +432,7 @@ public class BaseScriptingEnvironment {
         //
         // Scripting language invocation.
         //
-        Interpreter interpreter = getInterpreter(type);
+        //Interpreter interpreter = getInterpreter(type);
         if (interpreter == null) {
             // Can't find interpreter so just skip this script block.
             return;
@@ -546,22 +543,23 @@ public class BaseScriptingEnvironment {
             }
 
             executedScripts.put(script, null);
-            interpreter.evaluate(reader, desc);
+            //interpreter.evaluate(reader, desc);
 
         } catch (IOException e) {
             if (userAgent != null) {
                 userAgent.displayError(e);
             }
             return;
-        } catch (InterpreterException e) {
-            System.err.println("InterpExcept: " + e);
-            handleInterpreterException(e);
-            return;
-        } catch (SecurityException e) {
-            if (userAgent != null) {
-                userAgent.displayError(e);
-            }
         }
+        //catch ( e) {
+        //    System.err.println("InterpExcept: " + e);
+        //    handleInterpreterException(e);
+        //    return;
+        //} catch (SecurityException e) {
+        //    if (userAgent != null) {
+        //        userAgent.displayError(e);
+        //    }
+        //}
     }
 
     /**
@@ -622,7 +620,7 @@ public class BaseScriptingEnvironment {
             return;
         }
 
-        final Interpreter interp = getInterpreter();
+        final Object interp = getInterpreter();
         if (interp == null) {
             // Can't load interpreter so just dispatch normal event
             // to the DOM (for java presumably).
@@ -647,20 +645,20 @@ public class BaseScriptingEnvironment {
 
         EventListener l = new EventListener() {
                 public void handleEvent(Event evt) {
-                    try {
-                        Object event;
-                        if (evt instanceof ScriptEventWrapper) {
-                            event = ((ScriptEventWrapper) evt).getEventObject();
-                        } else {
-                            event = evt;
-                        }
-                        interp.bindObject(EVENT_NAME, event);
-                        interp.bindObject(ALTERNATE_EVENT_NAME, event);
-                        interp.evaluate(new StringReader(s), desc);
-                    } catch (IOException io) {
-                    } catch (InterpreterException e) {
-                        handleInterpreterException(e);
-                    }
+                    //try {
+                    //    Object event;
+                    //    if (evt instanceof ScriptEventWrapper) {
+                    //        event = ((ScriptEventWrapper) evt).getEventObject();
+                    //    } else {
+                    //        event = evt;
+                    //    }
+                    //    interp.bindObject(EVENT_NAME, event);
+                    //    interp.bindObject(ALTERNATE_EVENT_NAME, event);
+                    //    interp.evaluate(new StringReader(s), desc);
+                    //} catch (IOException io) {
+                    //} catch (InterpreterException e) {
+                    //    handleInterpreterException(e);
+                    //}
                 }
             };
         t.addEventListenerNS
@@ -723,10 +721,10 @@ public class BaseScriptingEnvironment {
     /**
      * Handles the given exception.
      */
-    protected void handleInterpreterException(InterpreterException ie) {
+    protected void handleInterpreterException(Object ie) {
         if (userAgent != null) {
-            Exception ex = ie.getException();
-            userAgent.displayError((ex == null) ? ie : ex);
+            //Exception ex = ie.getException();
+            //userAgent.displayError((ex == null) ? ie : ex);
         }
     }
 
@@ -747,7 +745,7 @@ public class BaseScriptingEnvironment {
         /**
          * The associated interpreter.
          */
-        protected Interpreter interpreter;
+        protected Object interpreter;
 
         /**
          * The associated language.
@@ -757,7 +755,7 @@ public class BaseScriptingEnvironment {
         /**
          * Creates a new Window.
          */
-        public Window(Interpreter interp, String lang) {
+        public Window(Object interp, String lang) {
             interpreter = interp;
             language = lang;
         }
@@ -902,7 +900,7 @@ public class BaseScriptingEnvironment {
         /**
          * Returns the associated interpreter.
          */
-        public Interpreter getInterpreter() {
+        public Object getInterpreter() {
             return interpreter;
         }
 

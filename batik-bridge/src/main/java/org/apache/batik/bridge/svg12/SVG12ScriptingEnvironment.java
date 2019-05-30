@@ -30,7 +30,6 @@ import org.apache.batik.dom.events.EventSupport;
 import org.apache.batik.dom.svg12.SVGGlobal;
 import org.apache.batik.dom.util.DOMUtilities;
 import org.apache.batik.dom.util.TriplyIndexedTable;
-import org.apache.batik.script.Interpreter;
 import org.apache.batik.util.SVGConstants;
 import org.apache.batik.util.SVG12Constants;
 import org.apache.batik.constants.XMLConstants;
@@ -290,7 +289,7 @@ public class SVG12ScriptingEnvironment extends ScriptingEnvironment {
     /**
      * Creates a new Window object.
      */
-    public org.apache.batik.bridge.Window createWindow(Interpreter interp,
+    public org.apache.batik.bridge.Window createWindow(Object interp,
                                                        String lang) {
         return new Global(interp, lang);
     }
@@ -305,7 +304,7 @@ public class SVG12ScriptingEnvironment extends ScriptingEnvironment {
         /**
          * Creates a new Global object.
          */
-        public Global(Interpreter interp, String lang) {
+        public Global(Object interp, String lang) {
             super(interp, lang);
         }
 

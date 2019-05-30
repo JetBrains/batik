@@ -19,8 +19,6 @@
 
 package org.apache.batik.bridge;
 
-import org.apache.batik.script.Interpreter;
-
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 
@@ -185,5 +183,5 @@ public interface Window extends org.apache.batik.w3c.dom.Window
     /**
      * Returns the associated interpreter.
      */
-    Interpreter getInterpreter();
+    Object getInterpreter();
 }

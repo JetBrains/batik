@@ -65,11 +65,11 @@
       <artifactId>batik-parser</artifactId>
       <version>${project.version}</version>
     </dependency>
-    <dependency>
-      <groupId>${project.groupId}</groupId>
-      <artifactId>batik-script</artifactId>
-      <version>${project.version}</version>
-    </dependency>
+    <!--<dependency>-->
+    <!--  <groupId>${project.groupId}</groupId>-->
+    <!--  <artifactId>batik-script</artifactId>-->
+    <!--  <version>${project.version}</version>-->
+    <!--</dependency>-->
     <dependency>
       <groupId>${project.groupId}</groupId>
       <artifactId>batik-shared-resources</artifactId>

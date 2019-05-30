@@ -48,9 +48,6 @@ import org.apache.batik.dom.util.XLinkSupport;
 import org.apache.batik.anim.dom.SAXSVGDocumentFactory;
 import org.apache.batik.anim.dom.SVGOMDocument;
 import org.apache.batik.anim.dom.SVGOMScriptElement;
-import org.apache.batik.script.Interpreter;
-import org.apache.batik.script.InterpreterException;
-import org.apache.batik.script.ScriptEventWrapper;
 import org.apache.batik.util.EncodingUtilities;
 import org.apache.batik.util.ParsedURL;
 import org.apache.batik.util.RunnableQueue;
@@ -376,7 +373,7 @@ public class ScriptingEnvironment extends BaseScriptingEnvironment {
     /**
      * Creates a new Window object.
      */
-    protected org.apache.batik.bridge.Window createWindow(Interpreter interp,
+    protected org.apache.batik.bridge.Window createWindow(Object interp,
                                                           String lang) {
         return new Window(interp, lang);
     }
@@ -386,7 +383,7 @@ public class ScriptingEnvironment extends BaseScriptingEnvironment {
      */
     public void runEventHandler(String script, Event evt,
                                 String lang, String desc) {
-        Interpreter interpreter = getInterpreter(lang);
+        Object interpreter = getInterpreter(lang);
         if (interpreter == null)
             return;
 
@@ -394,18 +391,18 @@ public class ScriptingEnvironment extends BaseScriptingEnvironment {
             checkCompatibleScriptURL(lang, docPURL);
 
             Object event;
-            if (evt instanceof ScriptEventWrapper) {
-                event = ((ScriptEventWrapper) evt).getEventObject();
-            } else {
+            //if (evt instanceof ScriptEventWrapper) {
+            //    event = ((ScriptEventWrapper) evt).getEventObject();
+            //} else {
                 event = evt;
-            }
-            interpreter.bindObject(EVENT_NAME, event);
-            interpreter.bindObject(ALTERNATE_EVENT_NAME, event);
-            interpreter.evaluate(new StringReader(script), desc);
-        } catch (IOException ioe) {
+            //}
+            //interpreter.bindObject(EVENT_NAME, event);
+            //interpreter.bindObject(ALTERNATE_EVENT_NAME, event);
+            //interpreter.evaluate(new StringReader(script), desc);
+        //} catch (IOException ioe) {
             // Do nothing, can't really happen with StringReader
-        } catch (InterpreterException ie) {
-            handleInterpreterException(ie);
+        //} catch (InterpreterException ie) {
+        //    handleInterpreterException(ie);
         } catch (SecurityException se) {
             handleSecurityException(se);
         }
@@ -695,18 +692,18 @@ public class ScriptingEnvironment extends BaseScriptingEnvironment {
      * To interpret a script.
      */
     protected class EvaluateRunnable implements Runnable {
-        protected Interpreter interpreter;
+        protected Object interpreter;
         protected String script;
-        public EvaluateRunnable(String s, Interpreter interp) {
+        public EvaluateRunnable(String s, Object interp) {
             interpreter = interp;
             script = s;
         }
         public void run() {
-            try {
-                interpreter.evaluate(script);
-            } catch (InterpreterException ie) {
-                handleInterpreterException(ie);
-            }
+            //try {
+            //    interpreter.evaluate(script);
+            //} catch (InterpreterException ie) {
+            //    handleInterpreterException(ie);
+            //}
         }
     }
 
@@ -720,10 +717,10 @@ public class ScriptingEnvironment extends BaseScriptingEnvironment {
         public int count;
         public boolean error;
 
-        protected Interpreter interpreter;
+        protected Object interpreter;
         protected String script;
 
-        public EvaluateIntervalRunnable(String s, Interpreter interp) {
+        public EvaluateIntervalRunnable(String s, Object interp) {
             interpreter = interp;
             script = s;
         }
@@ -734,23 +731,23 @@ public class ScriptingEnvironment extends BaseScriptingEnvironment {
                     return;
                 count--;
             }
-            try {
-                interpreter.evaluate(script);
-            } catch (InterpreterException ie) {
-                handleInterpreterException(ie);
-                synchronized (this) {
-                    error = true;
-                }
-            } catch (Exception e) {
-                if (userAgent != null) {
-                    userAgent.displayError(e);
-                } else {
-                    e.printStackTrace(); // No UA so just output...
-                }
-                synchronized (this) {
-                    error = true;
-                }
-            }
+            //try {
+            //    interpreter.evaluate(script);
+            //} catch (InterpreterException ie) {
+            //    handleInterpreterException(ie);
+            //    synchronized (this) {
+            //        error = true;
+            //    }
+            //} catch (Exception e) {
+            //    if (userAgent != null) {
+            //        userAgent.displayError(e);
+            //    } else {
+            //        e.printStackTrace(); // No UA so just output...
+            //    }
+            //    synchronized (this) {
+            //        error = true;
+            //    }
+            //}
         }
     }
 
@@ -908,7 +905,7 @@ public class ScriptingEnvironment extends BaseScriptingEnvironment {
         /**
          * The associated interpreter.
          */
-        protected Interpreter interpreter;
+        protected Object interpreter;
 
         /**
          * The associated language.
@@ -923,7 +920,7 @@ public class ScriptingEnvironment extends BaseScriptingEnvironment {
         /**
          * Creates a new Window for the given language.
          */
-        public Window(Interpreter interp, String lang) {
+        public Window(Object interp, String lang) {
             interpreter = interp;
             language = lang;
         }
@@ -1317,7 +1314,7 @@ public class ScriptingEnvironment extends BaseScriptingEnvironment {
         /**
          * Returns the associated interpreter.
          */
-        public Interpreter getInterpreter() {
+        public Object getInterpreter() {
             return interpreter;
         }
 

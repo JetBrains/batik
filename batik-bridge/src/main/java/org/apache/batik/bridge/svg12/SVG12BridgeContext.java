@@ -34,8 +34,6 @@ import org.apache.batik.dom.events.EventSupport;
 import org.apache.batik.dom.events.NodeEventTarget;
 import org.apache.batik.dom.xbl.NodeXBL;
 import org.apache.batik.dom.xbl.XBLManager;
-import org.apache.batik.script.Interpreter;
-import org.apache.batik.script.InterpreterPool;
 import org.apache.batik.util.SVGConstants;
 import org.apache.batik.constants.XMLConstants;
 
@@ -107,7 +105,7 @@ public class SVG12BridgeContext extends BridgeContext {
      * @param documentLoader document loader
      */
     public SVG12BridgeContext(UserAgent userAgent,
-                              InterpreterPool interpreterPool,
+                              Object interpreterPool,
                               DocumentLoader documentLoader) {
         super(userAgent, interpreterPool, documentLoader);
     }

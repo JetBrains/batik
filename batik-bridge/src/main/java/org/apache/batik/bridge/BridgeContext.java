@@ -58,8 +58,6 @@ import org.apache.batik.dom.svg.SVGContext;
 import org.apache.batik.dom.xbl.XBLManager;
 import org.apache.batik.gvt.CompositeGraphicsNode;
 import org.apache.batik.gvt.GraphicsNode;
-import org.apache.batik.script.Interpreter;
-import org.apache.batik.script.InterpreterPool;
 import org.apache.batik.util.CSSConstants;
 import org.apache.batik.util.CleanerThread;
 import org.apache.batik.util.ParsedURL;
@@ -189,7 +187,7 @@ public class BridgeContext implements ErrorConstants, CSSContext {
     /**
      * The interpreter pool used to handle scripts.
      */
-    protected InterpreterPool interpreterPool;
+    //protected InterpreterPool interpreterPool;
 
     /**
      * The document loader used to load/create Document.
@@ -273,7 +271,7 @@ public class BridgeContext implements ErrorConstants, CSSContext {
     /**
      * By default we share a unique instance of InterpreterPool.
      */
-    private static InterpreterPool sharedPool = new InterpreterPool();
+    //private static InterpreterPool sharedPool = new InterpreterPool();
 
     /**
      * Constructs a new empty bridge context.
@@ -290,7 +288,8 @@ public class BridgeContext implements ErrorConstants, CSSContext {
      */
     public BridgeContext(UserAgent userAgent) {
         this(userAgent,
-             sharedPool,
+             //sharedPool,
+             null,
              new DocumentLoader(userAgent));
     }
 
@@ -301,7 +300,7 @@ public class BridgeContext implements ErrorConstants, CSSContext {
      */
     public BridgeContext(UserAgent userAgent,
                          DocumentLoader loader) {
-        this(userAgent, sharedPool, loader);
+        this(userAgent, /*sharedPool*/null, loader);
     }
 
     /**
@@ -311,11 +310,11 @@ public class BridgeContext implements ErrorConstants, CSSContext {
      * @param documentLoader document loader
      */
     public BridgeContext(UserAgent userAgent,
-                         InterpreterPool interpreterPool,
+                         Object interpreterPool,
                          DocumentLoader documentLoader) {
         this.userAgent = userAgent;
         this.viewportMap.put(userAgent, new UserAgentViewport(userAgent));
-        this.interpreterPool = interpreterPool;
+        //this.interpreterPool = interpreterPool;
         this.documentLoader = documentLoader;
     }
 
@@ -524,9 +523,9 @@ public class BridgeContext implements ErrorConstants, CSSContext {
     /**
      * Returns the interpreter pool used to handle scripts.
      */
-    public InterpreterPool getInterpreterPool() {
-        return interpreterPool;
-    }
+    //public InterpreterPool getInterpreterPool() {
+    //    return interpreterPool;
+    //}
 
     /**
      * Returns the focus manager.

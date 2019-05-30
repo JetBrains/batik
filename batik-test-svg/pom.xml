@@ -45,11 +45,11 @@
       <artifactId>batik-test</artifactId>
       <version>${project.version}</version>
     </dependency>
-    <dependency>
-      <groupId>${project.groupId}</groupId>
-      <artifactId>batik-test-swing</artifactId>
-      <version>${project.version}</version>
-    </dependency>
+    <!--<dependency>-->
+    <!--  <groupId>${project.groupId}</groupId>-->
+    <!--  <artifactId>batik-test-swing</artifactId>-->
+    <!--  <version>${project.version}</version>-->
+    <!--</dependency>-->
     <dependency>
       <groupId>${project.groupId}</groupId>
       <artifactId>batik-transcoder</artifactId>
