@@ -167,17 +167,17 @@ public class SVG12BridgeContext extends BridgeContext {
             removeBindingListener();
         }
 
-        if (animationEngine != null) {
-            animationEngine.dispose();
-            animationEngine = null;
-        }
+        //if (animationEngine != null) {
+        //    animationEngine.dispose();
+        //    animationEngine = null;
+        //}
 
-        for (Object o : interpreterMap.values()) {
-            Interpreter interpreter = (Interpreter) o;
-            if (interpreter != null)
-                interpreter.dispose();
-        }
-        interpreterMap.clear();
+        //for (Object o : interpreterMap.values()) {
+        //    Interpreter interpreter = (Interpreter) o;
+        //    if (interpreter != null)
+        //        interpreter.dispose();
+        //}
+        //interpreterMap.clear();
 
         if (focusManager != null) {
             focusManager.dispose();
@@ -254,7 +254,7 @@ public class SVG12BridgeContext extends BridgeContext {
 
         animatedAttributeListener = new AnimatedAttrListener();
         doc.addAnimatedAttributeListener(animatedAttributeListener);
-        
+
         focusManager = new SVG12FocusManager(document);
 
         CSSEngine cssEngine = doc.getCSSEngine();
@@ -263,14 +263,14 @@ public class SVG12BridgeContext extends BridgeContext {
     }
 
     /**
-     * Adds EventListeners to the input document to handle the cursor 
+     * Adds EventListeners to the input document to handle the cursor
      * property.
-     * This is not done in the addDOMListeners method because 
-     * addDOMListeners is only used for dynamic content whereas 
+     * This is not done in the addDOMListeners method because
+     * addDOMListeners is only used for dynamic content whereas
      * cursor support is provided for all content.
      * Also note that it is very important that the listeners be
      * registered for the capture phase as the 'default' behavior
-     * for cursors is handled by the BridgeContext during the 
+     * for cursors is handled by the BridgeContext during the
      * capture phase and the 'custom' behavior (handling of 'auto'
      * on anchors, for example), is handled during the bubbling phase.
      */
@@ -358,7 +358,7 @@ public class SVG12BridgeContext extends BridgeContext {
             (XMLConstants.XML_EVENTS_NAMESPACE_URI,
              "DOMCharacterDataModified",
              domCharacterDataModifiedEventListener, true);
-        
+
         doc.removeAnimatedAttributeListener(animatedAttributeListener);
 
         CSSEngine cssEngine = doc.getCSSEngine();
@@ -500,7 +500,7 @@ public class SVG12BridgeContext extends BridgeContext {
      * The BindingListener.
      */
     protected class XBLBindingListener implements BindingListener {
-        
+
         /**
          * Invoked when the specified bindable element's binding has changed.
          */
@@ -523,7 +523,7 @@ public class SVG12BridgeContext extends BridgeContext {
      */
     protected class XBLContentListener
             implements ContentSelectionChangedListener {
-        
+
         /**
          * Invoked after an xbl:content element has updated its selected
          * nodes list.

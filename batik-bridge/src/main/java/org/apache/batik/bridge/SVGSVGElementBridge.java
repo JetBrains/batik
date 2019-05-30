@@ -18,22 +18,7 @@
  */
 package org.apache.batik.bridge;
 
-import java.awt.RenderingHints;
-import java.awt.Shape;
-import java.awt.geom.AffineTransform;
-import java.awt.geom.Dimension2D;
-import java.awt.geom.NoninvertibleTransformException;
-import java.awt.geom.Rectangle2D;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
-import org.apache.batik.anim.dom.AbstractSVGAnimatedLength;
-import org.apache.batik.anim.dom.AnimatedLiveAttributeValue;
-import org.apache.batik.anim.dom.SVGOMAnimatedRect;
-import org.apache.batik.anim.dom.SVGOMElement;
-import org.apache.batik.anim.dom.SVGOMSVGElement;
+import org.apache.batik.anim.dom.*;
 import org.apache.batik.dom.svg.LiveAttributeException;
 import org.apache.batik.dom.svg.SVGContext;
 import org.apache.batik.dom.svg.SVGSVGContext;
@@ -43,12 +28,21 @@ import org.apache.batik.gvt.CanvasGraphicsNode;
 import org.apache.batik.gvt.CompositeGraphicsNode;
 import org.apache.batik.gvt.GraphicsNode;
 import org.apache.batik.gvt.ShapeNode;
-
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.svg.SVGAnimatedPreserveAspectRatio;
 import org.w3c.dom.svg.SVGDocument;
 import org.w3c.dom.svg.SVGRect;
+
+import java.awt.*;
+import java.awt.geom.AffineTransform;
+import java.awt.geom.Dimension2D;
+import java.awt.geom.NoninvertibleTransformException;
+import java.awt.geom.Rectangle2D;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 /**
  * Bridge class for the &lt;svg&gt; element.
@@ -56,8 +50,8 @@ import org.w3c.dom.svg.SVGRect;
  * @author <a href="mailto:tkormann@apache.org">Thierry Kormann</a>
  * @version $Id$
  */
-public class SVGSVGElementBridge 
-    extends SVGGElementBridge 
+public class SVGSVGElementBridge
+    extends SVGGElementBridge
     implements SVGSVGContext {
 
     /**
@@ -327,20 +321,20 @@ public class SVGSVGElementBridge
                             (AbstractSVGAnimatedLength) se.getY();
                         y = _y.getCheckedValue();
                     }
-                    
+
                     // 'width' attribute - default is 100%
                     AbstractSVGAnimatedLength _width =
                         (AbstractSVGAnimatedLength) se.getWidth();
                     float w = _width.getCheckedValue();
-                    
+
                     // 'height' attribute - default is 100%
                     AbstractSVGAnimatedLength _height =
                         (AbstractSVGAnimatedLength) se.getHeight();
                     float h = _height.getCheckedValue();
-                    
+
                     CanvasGraphicsNode cgn;
                     cgn = (CanvasGraphicsNode)node;
-                    
+
                     // 'viewBox' and "preserveAspectRatio' attributes
                     SVGOMAnimatedRect vb = (SVGOMAnimatedRect) se.getViewBox();
                     SVGAnimatedPreserveAspectRatio par = se.getPreserveAspectRatio();
@@ -356,7 +350,7 @@ public class SVGSVGElementBridge
                     else {
                         // Only differs in translate.
                         cgn.setViewingTransform(newVT);
-                        
+
                         // 'overflow' and 'clip'
                         Shape clip = null;
                         if (CSSUtilities.convertOverflow(e)) { // overflow:hidden
@@ -374,7 +368,7 @@ public class SVGSVGElementBridge
                                                              h-offsets[2]-offsets[0]);
                             }
                         }
-                        
+
                         if (clip != null) {
                             try {
                                 AffineTransform at;
@@ -463,11 +457,11 @@ public class SVGSVGElementBridge
             ati = ati.createInverse();
         } catch (NoninvertibleTransformException e) {
         }
-        
+
         Element curr;
         Node    next = base.getFirstChild();
         while (next != null) {
-            if (next instanceof Element) 
+            if (next instanceof Element)
                 break;
             next = next.getNextSibling();
         }
@@ -498,15 +492,15 @@ public class SVGSVGElementBridge
                 curr = getNext(curr, base, end);
                 continue;
             }
-                
+
 
             AffineTransform at = gn.getGlobalTransform();
             Rectangle2D gnBounds = gn.getSensitiveBounds();
             at.preConcatenate(ati);
             if (gnBounds != null)
                 gnBounds = at.createTransformedShape(gnBounds).getBounds2D();
-                
-            if ((gnBounds == null) || 
+
+            if ((gnBounds == null) ||
                 (!rect.intersects(gnBounds))) {
                 // Graphics node does not intersect check if curr is
                 // an ancestor of end.
@@ -523,7 +517,7 @@ public class SVGSVGElementBridge
                 // Check children.
                 next = curr.getFirstChild();
                 while (next != null) {
-                    if (next instanceof Element) 
+                    if (next instanceof Element)
                         break;
                     next = next.getNextSibling();
                 }
@@ -537,7 +531,7 @@ public class SVGSVGElementBridge
                 // carefully and if it still intersects add it.
                 if (SVG_NAMESPACE_URI.equals(nsURI)
                         && SVG_USE_TAG.equals(tag)) {
-                    // FIXX: This really isn't right we need to 
+                    // FIXX: This really isn't right we need to
                     // Add the proxy children.
                     if (rect.contains(gnBounds))
                         ret.add(curr);
@@ -597,11 +591,11 @@ public class SVGSVGElementBridge
             ati = ati.createInverse();
         } catch (NoninvertibleTransformException e) {
         }
-        
+
         Element curr;
         Node    next = base.getFirstChild();
         while (next != null) {
-            if (next instanceof Element) 
+            if (next instanceof Element)
                 break;
             next = next.getNextSibling();
         }
@@ -634,7 +628,7 @@ public class SVGSVGElementBridge
                 curr = getNext(curr, base, end);
                 continue;
             }
-                
+
 
             AffineTransform at = gn.getGlobalTransform();
             Rectangle2D gnBounds = gn.getSensitiveBounds();
@@ -642,7 +636,7 @@ public class SVGSVGElementBridge
             if (gnBounds != null)
                 gnBounds = at.createTransformedShape(gnBounds).getBounds2D();
 
-            if ((gnBounds == null) || 
+            if ((gnBounds == null) ||
                 (!rect.intersects(gnBounds))) {
                 // Graphics node does not intersect check if curr is
                 // an ancestor of end.
@@ -658,7 +652,7 @@ public class SVGSVGElementBridge
                 // Check children.
                 next = curr.getFirstChild();
                 while (next != null) {
-                    if (next instanceof Element) 
+                    if (next instanceof Element)
                         break;
                     next = next.getNextSibling();
                 }
@@ -670,7 +664,7 @@ public class SVGSVGElementBridge
                 if (curr == end) break;
                 if (SVG_NAMESPACE_URI.equals(nsURI)
                         && SVG_USE_TAG.equals(tag)) {
-                    // FIXX: This really isn't right we need to 
+                    // FIXX: This really isn't right we need to
                     // Add the proxy children.
                     if (rect.contains(gnBounds))
                         ret.add(curr);
@@ -681,7 +675,7 @@ public class SVGSVGElementBridge
                     SVGTextElementBridge txtBridge;
                     txtBridge = (SVGTextElementBridge)svgElem.getSVGContext();
                     Set elems = txtBridge.getTextEnclosureSet(at, rect);
-                    
+
                     // filter elems based on who is before end as
                     // children of curr if needed.
                     if ((ancestors != null) && ancestors.contains(curr))
@@ -705,7 +699,7 @@ public class SVGSVGElementBridge
         if (svgGN == null) return false; // not in tree?
 
         Rectangle2D rect = new Rectangle2D.Float
-            (svgRect.getX(),     svgRect.getY(), 
+            (svgRect.getX(),     svgRect.getY(),
              svgRect.getWidth(), svgRect.getHeight());
         AffineTransform ati = svgGN.getGlobalTransform();
 
@@ -717,7 +711,7 @@ public class SVGSVGElementBridge
         if (element instanceof SVGOMElement) {
             svgctx  = ((SVGOMElement)element).getSVGContext();
             if ((svgctx instanceof SVGTextElementBridge) ||
-                (svgctx instanceof 
+                (svgctx instanceof
                  SVGTextElementBridge.AbstractTextChildSVGContext)) {
                 return SVGTextElementBridge.getTextIntersection
                     (ctx, element, ati, rect, true);
@@ -740,7 +734,7 @@ public class SVGSVGElementBridge
             return false;
 
         // Check GN more closely
-        if (!(gn instanceof ShapeNode)) 
+        if (!(gn instanceof ShapeNode))
             return true;
 
         ShapeNode sn = (ShapeNode)gn;
@@ -761,7 +755,7 @@ public class SVGSVGElementBridge
         if (element instanceof SVGOMElement) {
             svgctx  = ((SVGOMElement)element).getSVGContext();
             if ((svgctx instanceof SVGTextElementBridge) ||
-                (svgctx instanceof 
+                (svgctx instanceof
                  SVGTextElementBridge.AbstractTextChildSVGContext)) {
                 gnBounds = SVGTextElementBridge.getTextBounds
                     (ctx, element, true);
@@ -771,9 +765,9 @@ public class SVGSVGElementBridge
                     gn = ctx.getGraphicsNode(p);
                     p = (Element)p.getParentNode();
                 }
-            } else if (gn != null) 
+            } else if (gn != null)
                 gnBounds = gn.getSensitiveBounds();
-        } else if (gn != null) 
+        } else if (gn != null)
             gnBounds = gn.getSensitiveBounds();
 
         if (gnBounds == null) return false;
@@ -782,7 +776,7 @@ public class SVGSVGElementBridge
         if (svgGN == null) return false; // not in tree?
 
         Rectangle2D rect = new Rectangle2D.Float
-            (svgRect.getX(),     svgRect.getY(), 
+            (svgRect.getX(),     svgRect.getY(),
              svgRect.getWidth(), svgRect.getHeight());
         AffineTransform ati = svgGN.getGlobalTransform();
         try {
@@ -822,7 +816,7 @@ public class SVGSVGElementBridge
             ret.add(p);
             p = (Element)p.getParentNode();
         } while ((p != null) && (p != base));
-        
+
         if (p == null) // 'end' is not a child of 'base'.
             return null;
 
@@ -834,7 +828,7 @@ public class SVGSVGElementBridge
         // Check the next element.
         next = curr.getNextSibling();
         while (next != null) {
-            if (next instanceof Element) 
+            if (next instanceof Element)
                 break;
             next = next.getNextSibling();
         }
@@ -847,7 +841,7 @@ public class SVGSVGElementBridge
             }
             next = curr.getNextSibling();
             while (next != null) {
-                if (next instanceof Element) 
+                if (next instanceof Element)
                     break;
                 next = next.getNextSibling();
             }
@@ -883,39 +877,41 @@ public class SVGSVGElementBridge
         if (um != null)
             um.forceRepaint();
     }
-    
+
     /**
      * Pauses animations in the document.
      */
     public void pauseAnimations() {
-        ctx.getAnimationEngine().pause();
+        //ctx.getAnimationEngine().pause();
     }
 
     /**
      * Unpauses animations in the document.
      */
     public void unpauseAnimations() {
-        ctx.getAnimationEngine().unpause();
+        //ctx.getAnimationEngine().unpause();
     }
 
     /**
      * Returns whether animations are currently paused.
      */
     public boolean animationsPaused() {
-        return ctx.getAnimationEngine().isPaused();
+        //return ctx.getAnimationEngine().isPaused();
+        return false;
     }
 
     /**
      * Returns the current document time.
      */
     public float getCurrentTime() {
-        return ctx.getAnimationEngine().getCurrentTime();
+        //return ctx.getAnimationEngine().getCurrentTime();
+      return 0f;
     }
 
     /**
      * Sets the current document time.
      */
     public void setCurrentTime(float t) {
-        ctx.getAnimationEngine().setCurrentTime(t);
+        //ctx.getAnimationEngine().setCurrentTime(t);
     }
 }

@@ -43,6 +43,7 @@ import org.apache.batik.anim.dom.SVGOMElement;
 import org.apache.batik.anim.dom.SVGStylableElement;
 import org.apache.batik.bridge.svg12.SVG12BridgeContext;
 import org.apache.batik.bridge.svg12.SVG12BridgeExtension;
+import org.apache.batik.constants.XMLConstants;
 import org.apache.batik.css.engine.CSSContext;
 import org.apache.batik.css.engine.CSSEngine;
 import org.apache.batik.css.engine.CSSEngineEvent;
@@ -64,7 +65,6 @@ import org.apache.batik.util.CleanerThread;
 import org.apache.batik.util.ParsedURL;
 import org.apache.batik.util.SVGConstants;
 import org.apache.batik.util.Service;
-import org.apache.batik.constants.XMLConstants;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -111,7 +111,7 @@ public class BridgeContext implements ErrorConstants, CSSContext {
      * key is the language -
      * value is a Interpreter
      */
-    protected Map interpreterMap = new HashMap(7);
+    //protected Map interpreterMap = new HashMap(7);
 
     /**
      * A Map of all the font families already matched. This is
@@ -258,7 +258,7 @@ public class BridgeContext implements ErrorConstants, CSSContext {
     /**
      * The animation engine for the document.
      */
-    protected SVGAnimationEngine animationEngine;
+    //protected SVGAnimationEngine animationEngine;
 
     /**
      * The animation limiting mode.
@@ -538,54 +538,54 @@ public class BridgeContext implements ErrorConstants, CSSContext {
     /**
      * Returns the cursor manager
      */
-    public CursorManager getCursorManager() {
-        return cursorManager;
-    }
+    //public CursorManager getCursorManager() {
+    //    return cursorManager;
+    //}
 
     /**
      * Sets the interpreter pool used to handle scripts to the
      * specified interpreter pool.
      * @param interpreterPool the interpreter pool
      */
-    protected void setInterpreterPool(InterpreterPool interpreterPool) {
-        this.interpreterPool = interpreterPool;
-    }
+    //protected void setInterpreterPool(InterpreterPool interpreterPool) {
+    //    this.interpreterPool = interpreterPool;
+    //}
 
     /**
      * Returns a Interpreter for the specified language.
      *
      * @param language the scripting language
      */
-    public Interpreter getInterpreter(String language) {
-        if (document == null) {
-            throw new RuntimeException("Unknown document");
-        }
-        Interpreter interpreter = (Interpreter)interpreterMap.get(language);
-        if (interpreter == null) {
-            try {
-                interpreter = interpreterPool.createInterpreter(document, 
-                                                                language,
-                                                                null);
-                String[] mimeTypes = interpreter.getMimeTypes();
-                for (String mimeType : mimeTypes) {
-                    interpreterMap.put(mimeType, interpreter);
-                }
-            } catch (Exception e) {
-                if (userAgent != null) {
-                    userAgent.displayError(e);
-                    return null;
-                }
-            }
-        }
-
-        if (interpreter == null) {
-            if (userAgent != null) {
-                userAgent.displayError(new Exception("Unknown language: " + language));
-            }
-        }
-
-        return interpreter;
-    }
+    //public Interpreter getInterpreter(String language) {
+    //    if (document == null) {
+    //        throw new RuntimeException("Unknown document");
+    //    }
+    //    Interpreter interpreter = (Interpreter)interpreterMap.get(language);
+    //    if (interpreter == null) {
+    //        try {
+    //            interpreter = interpreterPool.createInterpreter(document,
+    //                                                            language,
+    //                                                            null);
+    //            String[] mimeTypes = interpreter.getMimeTypes();
+    //            for (String mimeType : mimeTypes) {
+    //                interpreterMap.put(mimeType, interpreter);
+    //            }
+    //        } catch (Exception e) {
+    //            if (userAgent != null) {
+    //                userAgent.displayError(e);
+    //                return null;
+    //            }
+    //        }
+    //    }
+    //
+    //    if (interpreter == null) {
+    //        if (userAgent != null) {
+    //            userAgent.displayError(new Exception("Unknown language: " + language));
+    //        }
+    //    }
+    //
+    //    return interpreter;
+    //}
 
     /**
      * Returns the document loader used to load external documents.
@@ -729,13 +729,13 @@ public class BridgeContext implements ErrorConstants, CSSContext {
      * Returns the AnimationEngine for the document.  Creates one if
      * it doesn't exist.
      */
-    public SVGAnimationEngine getAnimationEngine() {
-        if (animationEngine == null) {
-            animationEngine = new SVGAnimationEngine(document, this);
-            setAnimationLimitingMode();
-        }
-        return animationEngine;
-    }
+    //public SVGAnimationEngine getAnimationEngine() {
+    //    if (animationEngine == null) {
+    //        animationEngine = new SVGAnimationEngine(document, this);
+    //        setAnimationLimitingMode();
+    //    }
+    //    return animationEngine;
+    //}
 
     // reference management //////////////////////////////////////////////////
 
@@ -1159,7 +1159,7 @@ public class BridgeContext implements ErrorConstants, CSSContext {
     /**
      * Manages cursors and performs caching when appropriate
      */
-    protected CursorManager cursorManager = new CursorManager(this);
+    //protected CursorManager cursorManager = new CursorManager(this);
 
     /**
      * Adds EventListeners to the input document to handle the cursor
@@ -1451,17 +1451,17 @@ public class BridgeContext implements ErrorConstants, CSSContext {
             AbstractGraphicsNodeBridge.disposeTree(document);
         }
 
-        if (animationEngine != null) {
-            animationEngine.dispose();
-            animationEngine = null;
-        }
+        //if (animationEngine != null) {
+        //    animationEngine.dispose();
+        //    animationEngine = null;
+        //}
 
-        for (Object o : interpreterMap.values()) {
-            Interpreter interpreter = (Interpreter) o;
-            if (interpreter != null)
-                interpreter.dispose();
-        }
-        interpreterMap.clear();
+        //for (Object o : interpreterMap.values()) {
+        //    Interpreter interpreter = (Interpreter) o;
+        //    if (interpreter != null)
+        //        interpreter.dispose();
+        //}
+        //interpreterMap.clear();
 
         if (focusManager != null) {
             focusManager.dispose();
@@ -1474,7 +1474,7 @@ public class BridgeContext implements ErrorConstants, CSSContext {
         }
         if (elementNodeMap != null) {
             elementNodeMap.clear();
-        }        
+        }
     }
 
     /**
@@ -1984,9 +1984,9 @@ public class BridgeContext implements ErrorConstants, CSSContext {
      */
     public void setAnimationLimitingNone() {
         animationLimitingMode = 0;
-        if (animationEngine != null) {
-            setAnimationLimitingMode();
-        }
+        //if (animationEngine != null) {
+        //    setAnimationLimitingMode();
+        //}
     }
 
     /**
@@ -1996,9 +1996,9 @@ public class BridgeContext implements ErrorConstants, CSSContext {
     public void setAnimationLimitingCPU(float pc) {
         animationLimitingMode = 1;
         animationLimitingAmount = pc;
-        if (animationEngine != null) {
-            setAnimationLimitingMode();
-        }
+        //if (animationEngine != null) {
+        //    setAnimationLimitingMode();
+        //}
     }
 
     /**
@@ -2008,9 +2008,9 @@ public class BridgeContext implements ErrorConstants, CSSContext {
     public void setAnimationLimitingFPS(float fps) {
         animationLimitingMode = 2;
         animationLimitingAmount = fps;
-        if (animationEngine != null) {
-            setAnimationLimitingMode();
-        }
+        //if (animationEngine != null) {
+        //    setAnimationLimitingMode();
+        //}
     }
 
     /**
@@ -2019,15 +2019,15 @@ public class BridgeContext implements ErrorConstants, CSSContext {
     protected void setAnimationLimitingMode() {
         switch (animationLimitingMode) {
             case 0: // unlimited
-                animationEngine.setAnimationLimitingNone();
+                //animationEngine.setAnimationLimitingNone();
                 break;
             case 1: // %cpu
-                animationEngine.setAnimationLimitingCPU
-                    (animationLimitingAmount);
+                //animationEngine.setAnimationLimitingCPU
+                //    (animationLimitingAmount);
                 break;
             case 2: // fps
-                animationEngine.setAnimationLimitingFPS
-                    (animationLimitingAmount);
+                //animationEngine.setAnimationLimitingFPS
+                //    (animationLimitingAmount);
                 break;
         }
     }

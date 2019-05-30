@@ -18,31 +18,25 @@
  */
 package org.apache.batik.bridge;
 
-import java.awt.geom.AffineTransform;
-import java.awt.geom.Rectangle2D;
-
-import java.util.Calendar;
-
 import org.apache.batik.anim.AbstractAnimation;
 import org.apache.batik.anim.AnimationEngine;
-import org.apache.batik.anim.dom.AnimatableElement;
-import org.apache.batik.anim.dom.AnimatedLiveAttributeValue;
-import org.apache.batik.anim.dom.AnimationTarget;
-import org.apache.batik.anim.dom.AnimationTargetListener;
-import org.apache.batik.anim.dom.SVGOMElement;
+import org.apache.batik.anim.dom.*;
 import org.apache.batik.anim.timing.TimedElement;
 import org.apache.batik.anim.values.AnimatableValue;
 import org.apache.batik.css.engine.CSSEngineEvent;
 import org.apache.batik.dom.AbstractNode;
 import org.apache.batik.dom.svg.SVGAnimationContext;
 import org.apache.batik.dom.util.XLinkSupport;
-
 import org.w3c.dom.DOMException;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.events.EventTarget;
 import org.w3c.dom.events.MutationEvent;
 import org.w3c.dom.svg.SVGElement;
+
+import java.awt.geom.AffineTransform;
+import java.awt.geom.Rectangle2D;
+import java.util.Calendar;
 
 /**
  * An abstract base class for the SVG animation element bridges.
@@ -147,7 +141,7 @@ public abstract class SVGAnimationElementBridge extends AbstractSVGBridge
                 (SVGAnimationElementBridge) getInstance();
             b.element = (SVGOMElement) e;
             b.ctx = ctx;
-            b.eng = ctx.getAnimationEngine();
+            //b.eng = ctx.getAnimationEngine();
             b.element.setSVGContext(b);
             if (b.eng.hasStarted()) {
                 b.initializeAnimation();
@@ -332,7 +326,7 @@ public abstract class SVGAnimationElementBridge extends AbstractSVGBridge
     }
 
     /**
-     * Invoked when an MutationEvent of type 'DOMCharacterDataModified' 
+     * Invoked when an MutationEvent of type 'DOMCharacterDataModified'
      * is fired.
      */
     public void handleDOMCharacterDataModified(MutationEvent evt) {
@@ -386,14 +380,14 @@ public abstract class SVGAnimationElementBridge extends AbstractSVGBridge
      */
     public float getPixelToMM() {
         return getPixelUnitToMillimeter();
-            
+
     }
 
     public Rectangle2D getBBox() { return null; }
-    public AffineTransform getScreenTransform() { 
+    public AffineTransform getScreenTransform() {
         return ctx.getUserAgent().getTransform();
     }
-    public void setScreenTransform(AffineTransform at) { 
+    public void setScreenTransform(AffineTransform at) {
         ctx.getUserAgent().setTransform(at);
     }
     public AffineTransform getCTM() { return null; }
@@ -476,7 +470,7 @@ public abstract class SVGAnimationElementBridge extends AbstractSVGBridge
         timedElement.beginElement();
         return timedElement.canBegin();
     }
-    
+
     /**
      * <b>DOM</b>: Implements {@link
      * org.w3c.dom.smil.ElementTimeControl#beginElementAt(float)}.
@@ -487,7 +481,7 @@ public abstract class SVGAnimationElementBridge extends AbstractSVGBridge
         //     at some arbitrary point in the future.
         return true;
     }
-    
+
     /**
      * <b>DOM</b>: Implements {@link
      * org.w3c.dom.smil.ElementTimeControl#endElement()}.
@@ -496,7 +490,7 @@ public abstract class SVGAnimationElementBridge extends AbstractSVGBridge
         timedElement.endElement();
         return timedElement.canEnd();
     }
-    
+
     /**
      * <b>DOM</b>: Implements {@link
      * org.w3c.dom.smil.ElementTimeControl#endElementAt(float)}.

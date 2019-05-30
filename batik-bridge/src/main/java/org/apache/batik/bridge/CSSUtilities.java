@@ -253,7 +253,8 @@ public abstract class CSSUtilities
      */
     public static Cursor
         convertCursor(Element e, BridgeContext ctx) {
-        return ctx.getCursorManager().convertCursor(e);
+        //return ctx.getCursorManager().convertCursor(e);
+        return Cursor.getDefaultCursor();
     }
 
     ////////////////////////////////////////////////////////////////////////

@@ -18,23 +18,7 @@
  */
 package org.apache.batik.bridge;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.PushbackInputStream;
-import java.io.Reader;
-import java.io.StringReader;
-import java.io.UnsupportedEncodingException;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.WeakHashMap;
-import java.util.jar.Manifest;
-
+import org.apache.batik.constants.XMLConstants;
 import org.apache.batik.dom.AbstractElement;
 import org.apache.batik.dom.events.AbstractEvent;
 import org.apache.batik.dom.events.NodeEventTarget;
@@ -44,8 +28,6 @@ import org.apache.batik.script.InterpreterException;
 import org.apache.batik.script.ScriptEventWrapper;
 import org.apache.batik.util.ParsedURL;
 import org.apache.batik.util.SVGConstants;
-import org.apache.batik.constants.XMLConstants;
-
 import org.apache.batik.w3c.dom.Location;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -55,9 +37,15 @@ import org.w3c.dom.events.DocumentEvent;
 import org.w3c.dom.events.Event;
 import org.w3c.dom.events.EventListener;
 import org.w3c.dom.events.EventTarget;
+import org.w3c.dom.svg.EventListenerInitializer;
 import org.w3c.dom.svg.SVGDocument;
 import org.w3c.dom.svg.SVGSVGElement;
-import org.w3c.dom.svg.EventListenerInitializer;
+
+import java.io.*;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.*;
+import java.util.jar.Manifest;
 
 /**
  * This class is the base class for SVG scripting.
@@ -298,7 +286,7 @@ public class BaseScriptingEnvironment {
      */
     protected org.apache.batik.bridge.Window createWindow(Interpreter interp,
                                                           String lang) {
-        
+
         return new Window(interp, lang);
     }
 
@@ -315,7 +303,7 @@ public class BaseScriptingEnvironment {
     }
 
     public Interpreter getInterpreter(String lang) {
-        interpreter = bridgeContext.getInterpreter(lang);
+        //interpreter = bridgeContext.getInterpreter(lang);
         if (interpreter == null) {
             if (languages.contains(lang)) {
                 // Already issued warning so just return null.
@@ -480,8 +468,8 @@ public class BaseScriptingEnvironment {
                         // No encoding was specified in the MIME type, so
                         // infer it according to RFC 4329.
                         if (purl.hasContentTypeParameter("version")) {
-                            // Future versions of application/ecmascript 
-                            // are not supported, so skip this script 
+                            // Future versions of application/ecmascript
+                            // are not supported, so skip this script
                             // element if the version parameter is present.
                             return;
                         }
@@ -508,7 +496,7 @@ public class BaseScriptingEnvironment {
                                     enc = "UTF-16BE";
                                     pbis.skip(2);
                                 } else if (read >= 3
-                                        && buf[0] == (byte)0xef 
+                                        && buf[0] == (byte)0xef
                                         && buf[1] == (byte)0xbb
                                         && buf[2] == (byte)0xbf) {
                                     enc = "UTF-8";
@@ -593,7 +581,7 @@ public class BaseScriptingEnvironment {
         SVGSVGElement root = (SVGSVGElement)document.getDocumentElement();
         String lang = root.getContentScriptType();
         long documentStartTime = System.currentTimeMillis();
-        bridgeContext.getAnimationEngine().start(documentStartTime);
+        //bridgeContext.getAnimationEngine().start(documentStartTime);
         dispatchSVGLoad(root, true, lang);
     }
 

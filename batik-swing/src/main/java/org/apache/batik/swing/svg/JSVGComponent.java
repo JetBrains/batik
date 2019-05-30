@@ -1023,7 +1023,7 @@ public class JSVGComponent extends JGVTComponent {
                     pt = at.transform(pt, null);
                 if (rendAT != null)
                     pt = rendAT.transform(pt, null);
-                
+
                 // Now figure out how far we need to shift things
                 // to get the center point to line up again.
                 float dx = (float)((d.width/2.0f) -pt.getX());
@@ -1329,9 +1329,9 @@ public class JSVGComponent extends JGVTComponent {
      * @param type The MIME type the returned <code>Interpreter</code> handles.
      */
     public Interpreter getInterpreter(String type) {
-        if (bridgeContext != null) {
-            return bridgeContext.getInterpreter(type);
-        }
+        //if (bridgeContext != null) {
+        //    return bridgeContext.getInterpreter(type);
+        //}
         return null;
     }
 

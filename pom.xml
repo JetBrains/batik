@@ -17,8 +17,8 @@
     <compiler.version>3.3</compiler.version>
     <dependency.version>3.1.1</dependency.version>
     <findbugs.version>3.0.1</findbugs.version>
-    <jar.version>3.1.1</jar.version>
-    <java.version>1.7</java.version>
+    <jar.version>3.1.2</jar.version>
+    <java.version>1.8</java.version>
     <junit.version>4.11</junit.version>
     <jython.version>2.7.0</jython.version>
     <org.slf4j.simpleLogger.defaultLogLevel>error</org.slf4j.simpleLogger.defaultLogLevel>
@@ -69,7 +69,7 @@
   </organization>
 
   <modules>
-    <module>batik-all</module>
+    <!--<module>batik-all</module>-->
     <module>batik-anim</module>
     <module>batik-awt-util</module>
     <module>batik-bridge</module>
@@ -85,7 +85,7 @@
     <module>batik-parser</module>
     <module>batik-rasterizer-ext</module>
     <module>batik-rasterizer</module>
-    <module>batik-script</module>
+    <!--<module>batik-script</module>-->
     <module>batik-shared-resources</module>
     <module>batik-slideshow</module>
     <module>batik-squiggle-ext</module>
@@ -101,7 +101,7 @@
     <module>batik-util</module>
     <module>batik-ttf2svg</module>
     <module>batik-xml</module>
-    <module>batik-test-old</module>
+    <!--<module>batik-test-old</module>-->
     <module>batik-test-svg</module>
     <module>batik-test-swing</module>
   </modules>

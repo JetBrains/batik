@@ -327,7 +327,8 @@ public class JSVGViewerFrame
             if (bridgeContext == null) {
                 return null;
             }
-            return bridgeContext.getInterpreter("text/ecmascript");
+            //return bridgeContext.getInterpreter("text/ecmascript");
+            return null;
         }
 
         /**
