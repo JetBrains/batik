@@ -18,10 +18,9 @@
  */
 package org.apache.batik.test;
 
+import java.util.Arrays;
 import java.util.Locale;
 import java.util.MissingResourceException;
-
-import org.apache.batik.i18n.LocalizableSupport;
 
 /**
  * This class manages the message for the test.svg module.
@@ -45,21 +44,22 @@ public class Messages {
     /**
      * The localizable support for the error messages.
      */
-    protected static LocalizableSupport localizableSupport =
-        new LocalizableSupport(RESOURCES);
+    //protected static LocalizableSupport localizableSupport =
+    //    new LocalizableSupport(RESOURCES);
 
     /**
      * Implements {@link org.apache.batik.i18n.Localizable#setLocale(Locale)}.
      */
     public static void setLocale(Locale l) {
-        localizableSupport.setLocale(l);
+        //localizableSupport.setLocale(l);
     }
 
     /**
      * Implements {@link org.apache.batik.i18n.Localizable#getLocale()}.
      */
     public static Locale getLocale() {
-        return localizableSupport.getLocale();
+        //return localizableSupport.getLocale();
+        return Locale.ENGLISH;
     }
 
     /**
@@ -68,6 +68,10 @@ public class Messages {
      */
     public static String formatMessage(String key, Object[] args)
         throws MissingResourceException {
-        return localizableSupport.formatMessage(key, args);
+        //return localizableSupport.formatMessage(key, args);
+        if (args.length == 0) {
+          return key;
+        }
+        return key + " " + Arrays.toString(args);
     }
 }

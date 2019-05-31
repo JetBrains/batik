@@ -20,15 +20,13 @@ package org.apache.batik.parser;
 
 import java.io.Reader;
 
-import org.apache.batik.i18n.Localizable;
-
 /**
  * This interface represents a parser.
  *
  * @author <a href="mailto:stephane@hillion.org">Stephane Hillion</a>
  * @version $Id$
  */
-public interface Parser extends Localizable {
+public interface Parser {
     /**
      * Parses the given reader
      */

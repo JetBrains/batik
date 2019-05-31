@@ -95,11 +95,11 @@
       <artifactId>xmlgraphics-commons</artifactId>
       <version>${xmlgraphics.commons.version}</version>
     </dependency>
-    <dependency>
-      <groupId>xml-apis</groupId>
-      <artifactId>xml-apis-ext</artifactId>
-      <version>${xmlapisext.version}</version>
-    </dependency>
+    <!--<dependency>-->
+    <!--  <groupId>xml-apis</groupId>-->
+    <!--  <artifactId>xml-apis-ext</artifactId>-->
+    <!--  <version>${xmlapisext.version}</version>-->
+    <!--</dependency>-->
     <!--<dependency>-->
     <!--  <groupId>org.mozilla</groupId>-->
     <!--  <artifactId>rhino</artifactId>-->

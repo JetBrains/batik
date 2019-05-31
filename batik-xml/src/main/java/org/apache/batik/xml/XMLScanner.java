@@ -21,11 +21,10 @@ package org.apache.batik.xml;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.Reader;
+import java.util.Arrays;
 import java.util.Locale;
 import java.util.MissingResourceException;
 
-import org.apache.batik.i18n.Localizable;
-import org.apache.batik.i18n.LocalizableSupport;
 import org.apache.batik.util.io.NormalizingReader;
 import org.apache.batik.util.io.StreamNormalizingReader;
 import org.apache.batik.util.io.StringNormalizingReader;
@@ -36,7 +35,7 @@ import org.apache.batik.util.io.StringNormalizingReader;
  * @author <a href="mailto:stephane@hillion.org">Stephane Hillion</a>
  * @version $Id$
  */
-public class XMLScanner implements Localizable {
+public class XMLScanner {
 
     /**
      * The document start context.
@@ -137,9 +136,9 @@ public class XMLScanner implements Localizable {
     /**
      * The localizable support.
      */
-    protected LocalizableSupport localizableSupport =
-        new LocalizableSupport(BUNDLE_CLASSNAME,
-                               XMLScanner.class.getClassLoader());
+    //protected LocalizableSupport localizableSupport =
+    //    new LocalizableSupport(BUNDLE_CLASSNAME,
+    //                           XMLScanner.class.getClassLoader());
 
     /**
      * The reader.
@@ -253,14 +252,15 @@ public class XMLScanner implements Localizable {
      * Implements {@link org.apache.batik.i18n.Localizable#setLocale(Locale)}.
      */
     public  void setLocale(Locale l) {
-        localizableSupport.setLocale(l);
+        //localizableSupport.setLocale(l);
     }
 
     /**
      * Implements {@link org.apache.batik.i18n.Localizable#getLocale()}.
      */
     public Locale getLocale() {
-        return localizableSupport.getLocale();
+        //return localizableSupport.getLocale();
+        return Locale.ENGLISH;
     }
 
     /**
@@ -269,7 +269,11 @@ public class XMLScanner implements Localizable {
      */
     public String formatMessage(String key, Object[] args)
         throws MissingResourceException {
-        return localizableSupport.formatMessage(key, args);
+        //return localizableSupport.formatMessage(key, args);
+        if (args.length == 0) {
+          return key;
+        }
+        return key + " " + Arrays.toString(args);
     }
 
     /**

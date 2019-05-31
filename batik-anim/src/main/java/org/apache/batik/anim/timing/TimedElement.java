@@ -21,7 +21,6 @@ package org.apache.batik.anim.timing;
 import java.util.*;
 
 import org.apache.batik.anim.AnimationException;
-import org.apache.batik.i18n.LocalizableSupport;
 import org.apache.batik.parser.ClockHandler;
 import org.apache.batik.parser.ClockParser;
 import org.apache.batik.parser.ParseException;
@@ -1553,21 +1552,22 @@ public abstract class TimedElement implements SMILConstants {
     /**
      * The localizable support for the error messages.
      */
-    protected static LocalizableSupport localizableSupport =
-        new LocalizableSupport(RESOURCES, TimedElement.class.getClassLoader());
+    //protected static LocalizableSupport localizableSupport =
+    //    new LocalizableSupport(RESOURCES, TimedElement.class.getClassLoader());
 
     /**
      * Implements {@link org.apache.batik.i18n.Localizable#setLocale(java.util.Locale)}.
      */
     public static void setLocale(Locale l) {
-        localizableSupport.setLocale(l);
+        //localizableSupport.setLocale(l);
     }
 
     /**
      * Implements {@link org.apache.batik.i18n.Localizable#getLocale()}.
      */
     public static Locale getLocale() {
-        return localizableSupport.getLocale();
+        //return localizableSupport.getLocale();
+        return Locale.ENGLISH;
     }
 
     /**
@@ -1576,7 +1576,11 @@ public abstract class TimedElement implements SMILConstants {
      */
     public static String formatMessage(String key, Object[] args)
         throws MissingResourceException {
-        return localizableSupport.formatMessage(key, args);
+        //return localizableSupport.formatMessage(key, args);
+        if (args.length == 0) {
+          return key;
+        }
+        return key + " " + Arrays.toString(args);
     }
 
     /**

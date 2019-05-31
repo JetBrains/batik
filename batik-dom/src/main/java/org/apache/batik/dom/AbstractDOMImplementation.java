@@ -19,14 +19,13 @@
 package org.apache.batik.dom;
 
 import java.io.Serializable;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.MissingResourceException;
 
 import org.apache.batik.dom.events.DocumentEventSupport;
 import org.apache.batik.dom.events.EventSupport;
-import org.apache.batik.i18n.Localizable;
-import org.apache.batik.i18n.LocalizableSupport;
 
 import org.w3c.dom.DOMImplementation;
 
@@ -40,7 +39,6 @@ import org.w3c.dom.DOMImplementation;
 
 public abstract class AbstractDOMImplementation
         implements DOMImplementation,
-                   Localizable,
                    Serializable {
 
     /**
@@ -52,8 +50,8 @@ public abstract class AbstractDOMImplementation
     /**
      * The localizable support for the error messages.
      */
-    protected LocalizableSupport localizableSupport =
-        new LocalizableSupport(RESOURCES, getClass().getClassLoader());
+    //protected LocalizableSupport localizableSupport =
+    //    new LocalizableSupport(RESOURCES, getClass().getClassLoader());
 
     /**
      * The supported features.
@@ -74,7 +72,7 @@ public abstract class AbstractDOMImplementation
         registerFeature("Traversal",          "2.0");
         registerFeature("XPath",              "3.0");
     }
-    
+
     /**
      * Registers a DOM feature.
      */
@@ -153,14 +151,15 @@ public abstract class AbstractDOMImplementation
      * Implements {@link Localizable#setLocale(Locale)}.
      */
     public void setLocale(Locale l) {
-        localizableSupport.setLocale(l);
+        //localizableSupport.setLocale(l);
     }
 
     /**
      * Implements {@link Localizable#getLocale()}.
      */
     public Locale getLocale() {
-        return localizableSupport.getLocale();
+        //return localizableSupport.getLocale();
+        return Locale.ENGLISH;
     }
 
     protected void initLocalizable() {
@@ -171,6 +170,10 @@ public abstract class AbstractDOMImplementation
      */
     public String formatMessage(String key, Object[] args)
         throws MissingResourceException {
-        return localizableSupport.formatMessage(key, args);
+        if (args.length == 0) {
+          return key;
+        }
+        return key + " " + Arrays.toString(args);
+        //return localizableSupport.formatMessage(key, args);
     }
 }

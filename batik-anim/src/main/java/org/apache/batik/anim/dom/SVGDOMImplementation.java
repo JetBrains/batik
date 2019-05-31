@@ -37,7 +37,6 @@ import org.apache.batik.dom.svg.SVGOMEvent;
 import org.apache.batik.dom.util.CSSStyleDeclarationFactory;
 import org.apache.batik.dom.util.DOMUtilities;
 
-import org.apache.batik.i18n.LocalizableSupport;
 import org.apache.batik.util.ParsedURL;
 import org.apache.batik.util.SVGConstants;
 
@@ -98,8 +97,8 @@ public class SVGDOMImplementation
     }
 
     protected void initLocalizable() {
-        localizableSupport = new LocalizableSupport
-            (RESOURCES, getClass().getClassLoader());
+        //localizableSupport = new LocalizableSupport
+        //    (RESOURCES, getClass().getClassLoader());
     }
 
     public CSSEngine createCSSEngine(AbstractStylableDocument doc,

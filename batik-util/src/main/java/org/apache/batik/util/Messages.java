@@ -18,11 +18,9 @@
  */
 package org.apache.batik.util;
 
+import java.util.Arrays;
 import java.util.Locale;
 import java.util.MissingResourceException;
-
-import org.apache.batik.i18n.LocalizableSupport;
-import org.apache.batik.util.resources.ResourceManager;
 
 /**
  * This class manages the message for the security utilities
@@ -46,28 +44,29 @@ public class Messages {
     /**
      * The localizable support for the error messages.
      */
-    protected static LocalizableSupport localizableSupport =
-        new LocalizableSupport(RESOURCES, Messages.class.getClassLoader());
+    //protected static LocalizableSupport localizableSupport =
+    //    new LocalizableSupport(RESOURCES, Messages.class.getClassLoader());
 
     /**
      * The resource manager to decode messages.
      */
-    protected static ResourceManager resourceManager =
-        new ResourceManager(localizableSupport.getResourceBundle());
+    //protected static ResourceManager resourceManager =
+    //    new ResourceManager(localizableSupport.getResourceBundle());
 
     /**
      * Implements {@link org.apache.batik.i18n.Localizable#setLocale(Locale)}.
      */
     public static void setLocale(Locale l) {
-        localizableSupport.setLocale(l);
-        resourceManager = new ResourceManager(localizableSupport.getResourceBundle());
+        //localizableSupport.setLocale(l);
+        //resourceManager = new ResourceManager(localizableSupport.getResourceBundle());
     }
 
     /**
      * Implements {@link org.apache.batik.i18n.Localizable#getLocale()}.
      */
     public static Locale getLocale() {
-        return localizableSupport.getLocale();
+        //return localizableSupport.getLocale();
+        return Locale.ENGLISH;
     }
 
     /**
@@ -76,21 +75,28 @@ public class Messages {
      */
     public static String formatMessage(String key, Object[] args)
         throws MissingResourceException {
-        return localizableSupport.formatMessage(key, args);
+        //return localizableSupport.formatMessage(key, args);
+        if (args.length == 0) {
+          return key;
+        }
+        return key + " " + Arrays.toString(args);
     }
 
     public static String getString(String key)
         throws MissingResourceException {
-        return resourceManager.getString(key);
+        //return resourceManager.getString(key);
+        return key;
     }
 
     public static int getInteger(String key)
         throws MissingResourceException {
-        return resourceManager.getInteger(key);
+        //return resourceManager.getInteger(key);
+        return Integer.parseInt(key);
     }
 
     public static int getCharacter(String key)
         throws MissingResourceException {
-        return resourceManager.getCharacter(key);
+        //return resourceManager.getCharacter(key);
+        return key.charAt(0);
     }
 }

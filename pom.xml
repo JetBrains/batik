@@ -81,7 +81,7 @@
     <module>batik-extension</module>
     <module>batik-gui-util</module>
     <module>batik-gvt</module>
-    <module>batik-i18n</module>
+    <!--<module>batik-i18n</module>-->
     <module>batik-parser</module>
     <module>batik-rasterizer-ext</module>
     <module>batik-rasterizer</module>
@@ -93,7 +93,7 @@
     <module>batik-svg-dom</module>
     <!--<module>batik-svgbrowser</module>-->
     <module>batik-svggen</module>
-    <module>batik-svgpp</module>
+    <!--<module>batik-svgpp</module>-->
     <module>batik-svgrasterizer</module>
     <!--<module>batik-swing</module>-->
     <module>batik-test</module>

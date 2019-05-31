@@ -21,10 +21,10 @@ package org.apache.batik.parser;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.Reader;
+import java.util.Arrays;
 import java.util.Locale;
 import java.util.MissingResourceException;
 
-import org.apache.batik.i18n.LocalizableSupport;
 import org.apache.batik.util.io.NormalizingReader;
 import org.apache.batik.util.io.StreamNormalizingReader;
 import org.apache.batik.util.io.StringNormalizingReader;
@@ -52,9 +52,9 @@ public abstract class AbstractParser implements Parser {
     /**
      * The localizable support.
      */
-    protected LocalizableSupport localizableSupport =
-        new LocalizableSupport(BUNDLE_CLASSNAME,
-                               AbstractParser.class.getClassLoader());
+    //protected LocalizableSupport localizableSupport =
+    //    new LocalizableSupport(BUNDLE_CLASSNAME,
+    //                           AbstractParser.class.getClassLoader());
 
     /**
      * The normalizing reader.
@@ -77,14 +77,15 @@ public abstract class AbstractParser implements Parser {
      * Implements {@link org.apache.batik.i18n.Localizable#setLocale(Locale)}.
      */
     public void setLocale(Locale l) {
-        localizableSupport.setLocale(l);
+        //localizableSupport.setLocale(l);
     }
 
     /**
      * Implements {@link org.apache.batik.i18n.Localizable#getLocale()}.
      */
     public Locale getLocale() {
-        return localizableSupport.getLocale();
+        //return localizableSupport.getLocale();
+        return Locale.ENGLISH;
     }
 
     /**
@@ -93,7 +94,11 @@ public abstract class AbstractParser implements Parser {
      */
     public String formatMessage(String key, Object[] args)
         throws MissingResourceException {
-        return localizableSupport.formatMessage(key, args);
+        //return localizableSupport.formatMessage(key, args);
+        if (args.length == 0) {
+          return key;
+        }
+        return key + " " + Arrays.toString(args);
     }
 
     /**

@@ -22,15 +22,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.lang.reflect.Method;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
-import java.util.MissingResourceException;
-import java.util.WeakHashMap;
+import java.util.*;
 
 import org.apache.batik.dom.events.DocumentEventSupport;
 import org.apache.batik.dom.events.EventSupport;
@@ -38,8 +30,6 @@ import org.apache.batik.dom.traversal.TraversalSupport;
 import org.apache.batik.dom.util.DOMUtilities;
 import org.apache.batik.dom.xbl.GenericXBLManager;
 import org.apache.batik.dom.xbl.XBLManager;
-import org.apache.batik.i18n.Localizable;
-import org.apache.batik.i18n.LocalizableSupport;
 import org.apache.batik.util.CleanerThread;
 import org.apache.batik.util.DOMConstants;
 import org.apache.batik.util.SoftDoublyIndexedTable;
@@ -90,7 +80,6 @@ public abstract class AbstractDocument
     implements Document,
                DocumentEvent,
                DocumentTraversal,
-               Localizable,
                XPathEvaluator {
 
     /**
@@ -102,9 +91,9 @@ public abstract class AbstractDocument
     /**
      * The localizable support for the error messages.
      */
-    protected transient LocalizableSupport localizableSupport =
-        new LocalizableSupport
-        (RESOURCES, getClass().getClassLoader());
+    //protected transient LocalizableSupport localizableSupport =
+    //    new LocalizableSupport
+    //    (RESOURCES, getClass().getClassLoader());
 
     /**
      * The DOM implementation.
@@ -221,18 +210,19 @@ public abstract class AbstractDocument
         xmlEncoding = xe;
     }
 
-    /**
-     * Implements {@link org.apache.batik.i18n.Localizable#setLocale(Locale)}.
-     */
-    public void setLocale(Locale l) {
-        localizableSupport.setLocale(l);
-    }
+    ///**
+    // * Implements {@link org.apache.batik.i18n.Localizable#setLocale(Locale)}.
+    // */
+    //public void setLocale(Locale l) {
+    //    localizableSupport.setLocale(l);
+    //}
 
     /**
      * Implements {@link org.apache.batik.i18n.Localizable#getLocale()}.
      */
     public Locale getLocale() {
-        return localizableSupport.getLocale();
+        //return localizableSupport.getLocale();
+        return Locale.ENGLISH;
     }
 
     /**
@@ -241,7 +231,11 @@ public abstract class AbstractDocument
      */
     public String formatMessage(String key, Object[] args)
         throws MissingResourceException {
-        return localizableSupport.formatMessage(key, args);
+        //return localizableSupport.formatMessage(key, args);
+      if (args.length == 0) {
+        return key;
+      }
+      return key + " " + Arrays.toString(args);
     }
 
     /**
@@ -812,8 +806,8 @@ public abstract class AbstractDocument
         super.copyInto(n);
         AbstractDocument ad = (AbstractDocument)n;
         ad.implementation = implementation;
-        ad.localizableSupport = new LocalizableSupport
-            (RESOURCES, getClass().getClassLoader());
+        //ad.localizableSupport = new LocalizableSupport
+        //    (RESOURCES, getClass().getClassLoader());
         ad.inputEncoding = inputEncoding;
         ad.xmlEncoding = xmlEncoding;
         ad.xmlVersion = xmlVersion;
@@ -832,8 +826,8 @@ public abstract class AbstractDocument
         super.deepCopyInto(n);
         AbstractDocument ad = (AbstractDocument)n;
         ad.implementation = implementation;
-        ad.localizableSupport = new LocalizableSupport
-            (RESOURCES, getClass().getClassLoader());
+        //ad.localizableSupport = new LocalizableSupport
+        //    (RESOURCES, getClass().getClassLoader());
         return n;
     }
 
@@ -2720,8 +2714,8 @@ public abstract class AbstractDocument
         throws IOException, ClassNotFoundException {
         s.defaultReadObject();
 
-        localizableSupport = new LocalizableSupport
-            (RESOURCES, getClass().getClassLoader());
+        //localizableSupport = new LocalizableSupport
+        //    (RESOURCES, getClass().getClassLoader());
 
         Class c = Class.forName((String)s.readObject());
 

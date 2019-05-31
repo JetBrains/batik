@@ -40,16 +40,16 @@
       <artifactId>batik-constants</artifactId>
       <version>${project.version}</version>
     </dependency>
-    <dependency>
-      <groupId>${project.groupId}</groupId>
-      <artifactId>batik-i18n</artifactId>
-      <version>${project.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>${project.groupId}</groupId>
-      <artifactId>batik-shared-resources</artifactId>
-      <version>${project.version}</version>
-    </dependency>
+    <!--<dependency>-->
+    <!--  <groupId>${project.groupId}</groupId>-->
+    <!--  <artifactId>batik-i18n</artifactId>-->
+    <!--  <version>${project.version}</version>-->
+    <!--</dependency>-->
+    <!--<dependency>-->
+    <!--  <groupId>${project.groupId}</groupId>-->
+    <!--  <artifactId>batik-shared-resources</artifactId>-->
+    <!--  <version>${project.version}</version>-->
+    <!--</dependency>-->
   </dependencies>
 
   <build>

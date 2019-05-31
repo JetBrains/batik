@@ -21,12 +21,12 @@ package org.apache.batik.ext.awt.image.spi;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
+import java.util.Arrays;
 import java.util.Hashtable;
 
 import org.apache.batik.ext.awt.image.GraphicsUtil;
 import org.apache.batik.ext.awt.image.renderable.Filter;
 import org.apache.batik.ext.awt.image.renderable.RedRable;
-import org.apache.batik.i18n.LocalizableSupport;
 
 /**
  *
@@ -53,9 +53,13 @@ public class DefaultBrokenLinkProvider
             cl = base.getClass().getClassLoader();
         } catch (SecurityException se) {
         }
-        LocalizableSupport ls;
-        ls = new LocalizableSupport(MESSAGE_RSRC, base.getClass(), cl);
-        return ls.formatMessage(code, params);
+        //LocalizableSupport ls;
+        //ls = new LocalizableSupport(MESSAGE_RSRC, base.getClass(), cl);
+        if (params.length == 0) {
+          return code;
+        }
+        return code + " " + Arrays.toString(params);
+        //return ls.formatMessage(code, params);
     }
 
     public Filter getBrokenLinkImage(Object base,

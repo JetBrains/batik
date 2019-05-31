@@ -21,12 +21,11 @@ package org.apache.batik.css.parser;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.Reader;
+import java.util.Arrays;
 import java.util.Locale;
 import java.util.MissingResourceException;
 import java.util.StringTokenizer;
 
-import org.apache.batik.i18n.Localizable;
-import org.apache.batik.i18n.LocalizableSupport;
 import org.apache.batik.util.CSSConstants;
 import org.apache.batik.util.ParsedURL;
 import org.w3c.css.sac.CSSException;
@@ -49,7 +48,7 @@ import org.w3c.css.sac.SimpleSelector;
  * @author <a href="mailto:stephane@hillion.org">Stephane Hillion</a>
  * @version $Id$
  */
-public class Parser implements ExtendedParser, Localizable {
+public class Parser implements ExtendedParser {
 
     /**
      * The default resource bundle base name.
@@ -60,9 +59,9 @@ public class Parser implements ExtendedParser, Localizable {
     /**
      * The localizable support.
      */
-    protected LocalizableSupport localizableSupport =
-        new LocalizableSupport(BUNDLE_CLASSNAME,
-                               Parser.class.getClassLoader());
+    //protected LocalizableSupport localizableSupport =
+    //    new LocalizableSupport(BUNDLE_CLASSNAME,
+    //                           Parser.class.getClassLoader());
 
     /**
      * The scanner used to scan the input source.
@@ -120,14 +119,15 @@ public class Parser implements ExtendedParser, Localizable {
      * <b>SAC</b>: Implements {@link org.w3c.css.sac.Parser#setLocale(Locale)}.
      */
     public void setLocale(Locale locale) throws CSSException {
-        localizableSupport.setLocale(locale);
+        //localizableSupport.setLocale(locale);
     }
 
     /**
      * Implements {@link org.apache.batik.i18n.Localizable#getLocale()}.
      */
     public Locale getLocale() {
-        return localizableSupport.getLocale();
+        //return localizableSupport.getLocale();
+        return Locale.ENGLISH;
     }
 
     /**
@@ -136,7 +136,11 @@ public class Parser implements ExtendedParser, Localizable {
      */
     public String formatMessage(String key, Object[] args)
         throws MissingResourceException {
-        return localizableSupport.formatMessage(key, args);
+        //return localizableSupport.formatMessage(key, args);
+        if (args.length == 0) {
+          return key;
+        }
+        return key + " " + Arrays.toString(args);
     }
 
     /**

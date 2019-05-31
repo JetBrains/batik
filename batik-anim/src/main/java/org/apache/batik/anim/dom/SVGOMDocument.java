@@ -22,10 +22,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.Locale;
-import java.util.MissingResourceException;
+import java.util.*;
 
 import org.apache.batik.css.engine.CSSNavigableDocument;
 import org.apache.batik.css.engine.CSSNavigableDocumentListener;
@@ -45,8 +42,6 @@ import org.apache.batik.dom.events.EventSupport;
 import org.apache.batik.dom.svg.IdContainer;
 import org.apache.batik.dom.svg.SVGContext;
 import org.apache.batik.dom.util.XMLSupport;
-import org.apache.batik.i18n.Localizable;
-import org.apache.batik.i18n.LocalizableSupport;
 import org.apache.batik.util.ParsedURL;
 import org.apache.batik.util.SVGConstants;
 import org.apache.batik.constants.XMLConstants;
@@ -95,8 +90,8 @@ public class SVGOMDocument
     /**
      * The localizable support for the error messages.
      */
-    protected transient LocalizableSupport localizableSupport =
-        new LocalizableSupport(RESOURCES, getClass().getClassLoader());
+    //protected transient LocalizableSupport localizableSupport =
+    //    new LocalizableSupport(RESOURCES, getClass().getClassLoader());
 
     /**
      * The string representing the referrer.
@@ -158,8 +153,8 @@ public class SVGOMDocument
      * Implements {@link Localizable#setLocale(Locale)}.
      */
     public void setLocale(Locale l) {
-        super.setLocale(l);
-        localizableSupport.setLocale(l);
+        //super.setLocale(l);
+        //localizableSupport.setLocale(l);
     }
 
     /**
@@ -170,7 +165,11 @@ public class SVGOMDocument
         try {
             return super.formatMessage(key, args);
         } catch (MissingResourceException e) {
-            return localizableSupport.formatMessage(key, args);
+            //return localizableSupport.formatMessage(key, args);
+          if (args.length == 0) {
+            return key;
+          }
+          return key + " " + Arrays.toString(args);
         }
     }
 
@@ -763,8 +762,8 @@ public class SVGOMDocument
     protected Node copyInto(Node n) {
         super.copyInto(n);
         SVGOMDocument sd = (SVGOMDocument)n;
-        sd.localizableSupport = new LocalizableSupport
-            (RESOURCES, getClass().getClassLoader());
+        //sd.localizableSupport = new LocalizableSupport
+        //    (RESOURCES, getClass().getClassLoader());
         sd.referrer = referrer;
         sd.url = url;
         return n;
@@ -777,8 +776,8 @@ public class SVGOMDocument
     protected Node deepCopyInto(Node n) {
         super.deepCopyInto(n);
         SVGOMDocument sd = (SVGOMDocument)n;
-        sd.localizableSupport = new LocalizableSupport
-            (RESOURCES, getClass().getClassLoader());
+        //sd.localizableSupport = new LocalizableSupport
+        //    (RESOURCES, getClass().getClassLoader());
         sd.referrer = referrer;
         sd.url = url;
         return n;
@@ -793,7 +792,7 @@ public class SVGOMDocument
         throws IOException, ClassNotFoundException {
         s.defaultReadObject();
 
-        localizableSupport = new LocalizableSupport
-            (RESOURCES, getClass().getClassLoader());
+        //localizableSupport = new LocalizableSupport
+        //    (RESOURCES, getClass().getClassLoader());
     }
 }

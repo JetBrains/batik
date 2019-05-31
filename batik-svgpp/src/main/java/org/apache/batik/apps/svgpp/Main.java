@@ -22,7 +22,6 @@ package org.apache.batik.apps.svgpp;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.apache.batik.i18n.LocalizableSupport;
 import org.apache.batik.transcoder.Transcoder;
 import org.apache.batik.transcoder.TranscoderInput;
 import org.apache.batik.transcoder.TranscoderOutput;
@@ -55,8 +54,8 @@ public class Main {
     /**
      * The localizable support.
      */
-    protected static LocalizableSupport localizableSupport =
-        new LocalizableSupport(BUNDLE_CLASSNAME, Main.class.getClassLoader());
+    //protected static LocalizableSupport localizableSupport =
+    //    new LocalizableSupport(BUNDLE_CLASSNAME, Main.class.getClassLoader());
 
     /**
      * The arguments.
@@ -132,9 +131,9 @@ public class Main {
      */
     protected void printUsage() {
         printHeader();
-        System.out.println(localizableSupport.formatMessage("syntax", null));
+        //System.out.println(localizableSupport.formatMessage("syntax", null));
         System.out.println();
-        System.out.println(localizableSupport.formatMessage("options", null));
+        //System.out.println(localizableSupport.formatMessage("options", null));
         for (Object o : handlers.keySet()) {
             String s = (String) o;
             System.out.println(((OptionHandler) handlers.get(s)).getDescription());
@@ -145,7 +144,7 @@ public class Main {
      * Prints the command header.
      */
     protected void printHeader() {
-        System.out.println(localizableSupport.formatMessage("header", null));
+        //System.out.println(localizableSupport.formatMessage("header", null));
     }
 
     /**
