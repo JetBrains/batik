@@ -535,6 +535,11 @@ public abstract class SVGOMElement
      */
     protected SVGOMAnimatedLength createLiveAnimatedLength
             (String ns, String ln, String val, short dir, boolean nonneg) {
+        // https://issues.apache.org/jira/browse/BATIK-1220
+        if (val == null && ("width".equals(ln) || "height".equals(ln))) {
+          val = "0"; // used in case of missing width/height attr to avoid org.apache.batik.bridge.BridgeException
+        }
+
         SVGOMAnimatedLength v =
             new SVGOMAnimatedLength(this, ns, ln, val, dir, nonneg);
         liveAttributeValues.put(ns, ln, v);
