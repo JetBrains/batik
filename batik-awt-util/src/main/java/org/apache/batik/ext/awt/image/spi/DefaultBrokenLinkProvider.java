@@ -36,7 +36,7 @@ public class DefaultBrokenLinkProvider
     extends BrokenLinkProvider {
 
     static Filter brokenLinkImg = null;
-    static final String MESSAGE_RSRC = "resources.Messages";
+    //static final String MESSAGE_RSRC = "resources.Messages";
 
     static final Color BROKEN_LINK_COLOR = new Color( 255,255,255,190 );
 
@@ -44,18 +44,18 @@ public class DefaultBrokenLinkProvider
                                        String code,
                                        Object [] params) {
         // Should probably cache these...
-        ClassLoader cl = null;
-        try {
+        //ClassLoader cl = null;
+        //try {
             // Should work always
-            cl = DefaultBrokenLinkProvider.class.getClassLoader();
+            //cl = DefaultBrokenLinkProvider.class.getClassLoader();
             // may not work (depends on security and relationship
             // of base's class loader to this class's class loader.
-            cl = base.getClass().getClassLoader();
-        } catch (SecurityException se) {
-        }
+            //cl = base.getClass().getClassLoader();
+        //} catch (SecurityException se) {
+        //}
         //LocalizableSupport ls;
         //ls = new LocalizableSupport(MESSAGE_RSRC, base.getClass(), cl);
-        if (params.length == 0) {
+        if (params == null || params.length == 0) {
           return code;
         }
         return code + " " + Arrays.toString(params);

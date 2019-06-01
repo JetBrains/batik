@@ -270,7 +270,7 @@ public class XMLScanner {
     public String formatMessage(String key, Object[] args)
         throws MissingResourceException {
         //return localizableSupport.formatMessage(key, args);
-        if (args.length == 0) {
+        if (args == null || args.length == 0) {
           return key;
         }
         return key + " " + Arrays.toString(args);
