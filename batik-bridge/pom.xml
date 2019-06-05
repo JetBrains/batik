@@ -45,11 +45,11 @@
       <artifactId>batik-awt-util</artifactId>
       <version>${project.version}</version>
     </dependency>
-    <dependency>
-      <groupId>${project.groupId}</groupId>
-      <artifactId>batik-css</artifactId>
-      <version>${project.version}</version>
-    </dependency>
+    <!--<dependency>-->
+    <!--  <groupId>${project.groupId}</groupId>-->
+    <!--  <artifactId>batik-css</artifactId>-->
+    <!--  <version>${project.version}</version>-->
+    <!--</dependency>-->
     <dependency>
       <groupId>${project.groupId}</groupId>
       <artifactId>batik-dom</artifactId>

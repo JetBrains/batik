@@ -78,13 +78,13 @@ public class SVG12DOMImplementation
         ParsedURL durl = ((SVGOMDocument)doc).getParsedURL();
         CSSEngine result = new SVG12CSSEngine(doc, durl, ep, vms, sms, ctx);
 
-        URL url = getClass().getResource("resources/UserAgentStyleSheet.css");
-        if (url != null) {
-            ParsedURL purl = new ParsedURL(url);
-            InputSource is = new InputSource(purl.toString());
-            result.setUserAgentStyleSheet
-                (result.parseStyleSheet(is, purl, "all"));
-        }
+        //URL url = getClass().getResource("resources/UserAgentStyleSheet.css");
+        //if (url != null) {
+        //    ParsedURL purl = new ParsedURL(url);
+        //    InputSource is = new InputSource(purl.toString());
+        //    result.setUserAgentStyleSheet
+        //        (result.parseStyleSheet(is, purl, "all"));
+        //}
 
         return result;
     }
