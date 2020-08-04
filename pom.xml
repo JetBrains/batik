@@ -78,16 +78,16 @@
     <module>batik-css</module>
     <module>batik-dom</module>
     <module>batik-ext</module>
-    <module>batik-extension</module>
-    <module>batik-gui-util</module>
+    <!--<module>batik-extension</module>-->
+    <!--<module>batik-gui-util</module>-->
     <module>batik-gvt</module>
     <!--<module>batik-i18n</module>-->
     <module>batik-parser</module>
-    <module>batik-rasterizer-ext</module>
+    <!--<module>batik-rasterizer-ext</module>-->
     <module>batik-rasterizer</module>
     <!--<module>batik-script</module>-->
     <module>batik-shared-resources</module>
-    <module>batik-slideshow</module>
+    <!--<module>batik-slideshow</module>-->
     <!--<module>batik-squiggle-ext</module>-->
     <!--<module>batik-squiggle</module>-->
     <module>batik-svg-dom</module>
@@ -99,7 +99,7 @@
     <module>batik-test</module>
     <module>batik-transcoder</module>
     <module>batik-util</module>
-    <module>batik-ttf2svg</module>
+    <!--<module>batik-ttf2svg</module>-->
     <module>batik-xml</module>
     <!--<module>batik-test-old</module>-->
     <module>batik-test-svg</module>
