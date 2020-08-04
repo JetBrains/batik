@@ -112,18 +112,18 @@
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
       </plugin>
-      <plugin>
-        <artifactId>maven-surefire-plugin</artifactId>
-        <version>${surefire.version}</version><!--$NO-MVN-MAN-VER$-->
-        <configuration>
-          <skipTests>true</skipTests>
-          <includes>
-            <include>**/*TestCase.java</include>
-          </includes>
-          <redirectTestOutputToFile>true</redirectTestOutputToFile>
-          <workingDirectory>..</workingDirectory>
-        </configuration>
-      </plugin>
+      <!--<plugin>-->
+      <!--  <artifactId>maven-surefire-plugin</artifactId>-->
+      <!--  <version>${surefire.version}</version>&lt;!&ndash;$NO-MVN-MAN-VER$&ndash;&gt;-->
+      <!--  <configuration>-->
+      <!--    <skipTests>true</skipTests>-->
+      <!--    <includes>-->
+      <!--      <include>**/*TestCase.java</include>-->
+      <!--    </includes>-->
+      <!--    <redirectTestOutputToFile>true</redirectTestOutputToFile>-->
+      <!--    <workingDirectory>..</workingDirectory>-->
+      <!--  </configuration>-->
+      <!--</plugin>-->
       <plugin>
         <artifactId>maven-dependency-plugin</artifactId>
         <version>${dependency.version}</version><!--$NO-MVN-MAN-VER$-->

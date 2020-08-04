@@ -66,17 +66,17 @@
 
   <build>
     <plugins>
-      <plugin>
-        <artifactId>maven-surefire-plugin</artifactId>
-        <version>${surefire.version}</version><!--$NO-MVN-MAN-VER$-->
-        <configuration>
-          <includes>
-            <include>**/*TestCase.java</include>
-            <include>**/*TestCases.java</include>
-          </includes>
-          <redirectTestOutputToFile>true</redirectTestOutputToFile>
-        </configuration>
-      </plugin>
+      <!--<plugin>-->
+      <!--  <artifactId>maven-surefire-plugin</artifactId>-->
+      <!--  <version>${surefire.version}</version>&lt;!&ndash;$NO-MVN-MAN-VER$&ndash;&gt;-->
+      <!--  <configuration>-->
+      <!--    <includes>-->
+      <!--      <include>**/*TestCase.java</include>-->
+      <!--      <include>**/*TestCases.java</include>-->
+      <!--    </includes>-->
+      <!--    <redirectTestOutputToFile>true</redirectTestOutputToFile>-->
+      <!--  </configuration>-->
+      <!--</plugin>-->
        <plugin>
          <groupId>org.apache.maven.plugins</groupId>
          <artifactId>maven-jar-plugin</artifactId>
