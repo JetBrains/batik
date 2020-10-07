@@ -86,7 +86,7 @@
     <!--<module>batik-rasterizer-ext</module>-->
     <module>batik-rasterizer</module>
     <!--<module>batik-script</module>-->
-    <module>batik-shared-resources</module>
+    <!--<module>batik-shared-resources</module>-->
     <!--<module>batik-slideshow</module>-->
     <!--<module>batik-squiggle-ext</module>-->
     <!--<module>batik-squiggle</module>-->
