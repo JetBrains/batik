@@ -45,11 +45,11 @@
       <artifactId>batik-util</artifactId>
       <version>${project.version}</version>
     </dependency>
-    <!--<dependency>-->
-    <!--  <groupId>org.apache.xmlgraphics</groupId>-->
-    <!--  <artifactId>xmlgraphics-commons</artifactId>-->
-    <!--  <version>${xmlgraphics.commons.version}</version>-->
-    <!--</dependency>-->
+    <dependency>
+      <groupId>org.apache.xmlgraphics</groupId>
+      <artifactId>xmlgraphics-commons</artifactId>
+      <version>${xmlgraphics.commons.version}</version>
+    </dependency>
     <dependency>
       <groupId>xml-apis</groupId>
       <artifactId>xml-apis-ext</artifactId>
